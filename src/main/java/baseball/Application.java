@@ -21,7 +21,7 @@ public class Application {
 				//TODO print hurray and ask for the next game
 			}
 
-			if (game.getGameStatus() == END) {
+			if (game.getGameStatus() == EXIT) {
 				return;
 			}
 

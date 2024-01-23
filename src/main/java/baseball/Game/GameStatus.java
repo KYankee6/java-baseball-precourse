@@ -5,5 +5,5 @@ package baseball.Game;
  *
  */
 public enum GameStatus {
-    INIT, PLAYING, STOP, EXIT;
+    INIT, PLAYING, STOP, EXIT
 }
