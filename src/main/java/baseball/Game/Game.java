@@ -6,7 +6,7 @@ public class Game {
     private GameStatus gameStatus;
 
     public void initialize() {
-        this.setGameStatus(INIT);
+        this.setGameStatus(INITIALIZE);
     }
 
     public GameStatus getGameStatus() {
