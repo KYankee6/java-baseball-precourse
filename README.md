@@ -131,8 +131,6 @@ This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blo
 
 ## 기능
 - 게임 - 진행을 위한 메인 함수 기능
-- 게임 - 상태 추적을 위한 상태 추적 기능
-- 게임 - 게임 초기화 기능
 - 게임 - 게임 결과 판별 기능
 - 게임 - 유저 인풋 입력받고 검증하는 기능
 - 유저 - 생성된 문자열 맞추기 기능
