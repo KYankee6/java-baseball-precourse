@@ -1,6 +1,6 @@
-package baseball.Game;
+package baseball.game;
 
-import static baseball.Game.GameStatus.*;
+import static baseball.game.GameStatus.*;
 
 public class Game {
     private GameStatus gameStatus;

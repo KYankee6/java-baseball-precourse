@@ -1,8 +1,8 @@
 package baseball;
 
-import static baseball.Game.GameStatus.*;
+import static baseball.game.GameStatus.*;
 
-import baseball.Game.Game;
+import baseball.game.Game;
 
 public class Application {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package baseball.Game;
+package baseball.game;
 
 /**
  *
