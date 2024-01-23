@@ -9,7 +9,7 @@ public class Application {
 		Game game = new Game();
 		game.initialize();
 		while (true) {
-			if (game.getGameStatus() == INIT) {
+			if (game.getGameStatus() == INITIALIZE) {
 				//TODO computer generate random String
 			}
 
