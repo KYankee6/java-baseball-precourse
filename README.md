@@ -133,5 +133,4 @@ This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blo
 - 게임 - 진행을 위한 메인 함수 기능
 - 게임 - 게임 결과 판별 기능
 - 게임 - 유저 인풋 입력받고 검증하는 기능
-- 유저 - 생성된 문자열 맞추기 기능
 - 컴퓨터 - 랜덤 문자열 생성 기능
