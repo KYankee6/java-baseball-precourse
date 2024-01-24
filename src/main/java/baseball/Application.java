@@ -25,6 +25,10 @@ public class Application {
 				throw new RuntimeException(e);
 			}
 
+			if (game.getGameStatus() == STOP) {
+				gameService.askUser();
+			}
+
 			if (game.getGameStatus() == EXIT) {
 				return;
 			}
