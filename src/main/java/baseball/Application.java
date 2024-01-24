@@ -14,7 +14,7 @@ public class Application {
 
 		while (true) {
 			if (game.getGameStatus() == INITIALIZE) {
-				//TODO computer generate random String
+				gameService.generateRandom();
 			}
 
 			try {

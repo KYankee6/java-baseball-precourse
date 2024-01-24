@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import baseball.player.Computer;
 import baseball.player.User;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class GameService {
 	private Game game;
@@ -93,5 +94,21 @@ public class GameService {
 		String userGuess = user.getGuess();
 		if (!userGuess.matches(pattern))
 			throw new IllegalArgumentException();
+	}
+
+	public void generateRandom() {
+		StringBuilder randomStringBuilder = new StringBuilder();
+		for (int i = 0; i < 3; i++) {
+			int randomNumber = Randoms.pickNumberInRange(1, 9);
+			String parsedRandomNumber = Integer.toString(randomNumber);
+
+			while (randomStringBuilder.toString().contains(parsedRandomNumber)) {
+				// 중복 체크: 정답은 서로 다른 수로 이루어져 있음
+				randomNumber = Randoms.pickNumberInRange(1, 9);
+			}
+
+			randomStringBuilder.append(parsedRandomNumber);
+		}
+		computer.setRandomNumbers(randomStringBuilder.toString());
 	}
 }
