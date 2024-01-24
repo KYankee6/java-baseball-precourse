@@ -1,9 +1,10 @@
 package baseball.game;
 
-import java.util.Scanner;
+import static baseball.Constant.*;
 
 import baseball.player.Computer;
 import baseball.player.User;
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class GameService {
@@ -20,34 +21,34 @@ public class GameService {
 	public void judge() {
 		int numberOfStrike = 0;
 		int numberOfBall = 0;
-		numberOfBall = countCharacterInSameIndex(user.getGuess(), computer.getRandomNumbers());
-		numberOfStrike = countCharacterInDifferentIndex(user.getGuess(), computer.getRandomNumbers());
+		numberOfStrike = countCharacterInSameIndex(user.getGuess(), computer.getRandomNumbers());
+		numberOfBall = countCharacterInDifferentIndex(user.getGuess(), computer.getRandomNumbers());
 
 		if (numberOfBall == 0 && numberOfStrike == 0) {
-			System.out.print("낫싱");
+			System.out.print(RESULT_NOTHING);
 		}
 
 		if (numberOfBall > 0) {
-			System.out.print(numberOfBall + "볼");
+			System.out.print(numberOfBall + RESULT_BALL);
 		}
 
 		if (numberOfStrike > 0) {
 			if (numberOfBall > 0)
 				System.out.print(" ");
-			System.out.print(numberOfStrike + "스트라이크");
+			System.out.print(numberOfStrike + RESULT_STRIKE);
 		}
 
 		System.out.println();
 
 		if (numberOfStrike == 3) {
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			System.out.println(RESULT_GAME_OVER);
 			game.stop();
 		}
 	}
 
 	private int countCharacterInSameIndex(String input1, String input2) {
 		int count = 0;
-		for (int i = 0; i < input1.length(); i++) {
+		for (int i = 0; i < DIGIT_LENGTH; i++) {
 			if (input1.charAt(i) == input2.charAt(i))
 				count++;
 		}
@@ -56,18 +57,18 @@ public class GameService {
 
 	private int countCharacterInDifferentIndex(String input1, String input2) {
 		int count = 0;
-		for (int i = 0; i < input1.length(); i++) {
-			String target = input1.substring(i, i);
-			if (input2.indexOf(target) == i)
+		for (int i = 0; i < DIGIT_LENGTH; i++) {
+			String target = Character.toString(input1.charAt(i));
+			if (input2.indexOf(target) != i && input2.contains(target))
 				count++;
 		}
 		return count;
 	}
 
 	public void userTurn() throws Exception {
-		Scanner scanner = new Scanner(System.in);
+		System.out.print(ENTER_THREE_DIGIT);
 
-		String input = scanner.nextLine();
+		String input = Console.readLine();
 		try {
 			user.setGuess(input);
 			validate();
@@ -77,16 +78,17 @@ public class GameService {
 	}
 
 	public void askUserWantToPlay() {
-		Scanner scanner = new Scanner(System.in);
+		System.out.println(ENTER_RESTART_FLAG);
 
-		String input = scanner.nextLine();
+		String input = Console.readLine();
 		user.setWantToPlay(input);
-		if (user.getWantToPlay().equals("1")) {
+		if (user.getWantToPlay().equals(RESTART)) {
 			game.initialize();
 		}
-		if (user.getWantToPlay().equals("2")) {
-			game.stop();
+		if (user.getWantToPlay().equals(END_GAME)) {
+			game.exit();
 		}
+
 	}
 
 	public void validate() throws Exception {
@@ -98,13 +100,14 @@ public class GameService {
 
 	public void generateRandom() {
 		StringBuilder randomStringBuilder = new StringBuilder();
-		for (int i = 0; i < 3; i++) {
-			int randomNumber = Randoms.pickNumberInRange(1, 9);
+		for (int i = 0; i < DIGIT_LENGTH; i++) {
+			int randomNumber = Randoms.pickNumberInRange(LOWER_BOUND, UPPER_BOUND);
 			String parsedRandomNumber = Integer.toString(randomNumber);
 
 			while (randomStringBuilder.toString().contains(parsedRandomNumber)) {
-				// 중복 체크: 정답은 서로 다른 수로 이루어져 있음
-				randomNumber = Randoms.pickNumberInRange(1, 9);
+				randomNumber = Randoms.pickNumberInRange(LOWER_BOUND, UPPER_BOUND);
+				parsedRandomNumber = Integer.toString(randomNumber);
+
 			}
 
 			randomStringBuilder.append(parsedRandomNumber);

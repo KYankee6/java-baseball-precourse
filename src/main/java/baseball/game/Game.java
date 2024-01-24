@@ -16,6 +16,10 @@ public class Game {
         this.setGameStatus(STOP);
     }
 
+    public void exit() {
+        this.setGameStatus(EXIT);
+    }
+
 
 
     public GameStatus getGameStatus() {

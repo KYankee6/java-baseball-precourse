@@ -10,12 +10,15 @@ import baseball.player.User;
 public class Application {
 	public static void main(String[] args) {
 		Game game = new Game();
+		game.initialize();
 		GameService gameService = new GameService(game, new User(), new Computer());
 
 		while (true) {
 			if (game.getGameStatus() == INITIALIZE) {
+				game.play();
 				gameService.generateRandom();
 			}
+
 
 			try {
 				gameService.userTurn();
@@ -23,9 +26,11 @@ public class Application {
 				throw new IllegalArgumentException(e);
 			}
 
-			gameService.judge();
+			if (game.getGameStatus() == PLAYING) {
+				gameService.judge();
+			}
 
-			if(game.getGameStatus() == STOP){
+			if (game.getGameStatus() == STOP) {
 				gameService.askUserWantToPlay();
 			}
 
