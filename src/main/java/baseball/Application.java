@@ -10,9 +10,7 @@ import baseball.player.User;
 public class Application {
 	public static void main(String[] args) {
 		Game game = new Game();
-		GameService gameService = new GameService(new User(), new Computer());
-		game.initialize(gameService);
-
+		GameService gameService = new GameService(game, new User(), new Computer());
 
 		while (true) {
 			if (game.getGameStatus() == INITIALIZE) {
@@ -22,11 +20,13 @@ public class Application {
 			try {
 				gameService.userTurn();
 			} catch (Exception e) {
-				throw new RuntimeException(e);
+				throw new IllegalArgumentException(e);
 			}
 
-			if (game.getGameStatus() == STOP) {
-				gameService.askUser();
+			gameService.judge();
+
+			if(game.getGameStatus() == STOP){
+				gameService.askUserWantToPlay();
 			}
 
 			if (game.getGameStatus() == EXIT) {

@@ -3,11 +3,9 @@ package baseball.game;
 import static baseball.game.GameStatus.*;
 
 public class Game {
-    private GameService gameService;
     private GameStatus gameStatus;
 
-    public void initialize(GameService gameService) {
-        this.setGameService(gameService);
+    public void initialize() {
         this.setGameStatus(INITIALIZE);
     }
 
@@ -24,16 +22,8 @@ public class Game {
         return gameStatus;
     }
 
-
     private void setGameStatus(GameStatus gameStatus) {
         this.gameStatus = gameStatus;
     }
 
-    public GameService getGameService() {
-        return gameService;
-    }
-
-    private void setGameService(GameService gameService) {
-        this.gameService = gameService;
-    }
 }
