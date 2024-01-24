@@ -4,8 +4,15 @@ import baseball.player.Computer;
 import baseball.player.User;
 
 public class GameService {
+	private User user;
+	private Computer computer;
 
-	public void judge(Game game, User user, Computer computer) {
+	public GameService(User user, Computer computer) {
+		this.user = user;
+		this.computer = computer;
+	}
+
+	public void judge(Game game) {
 		int numberOfStrike = 0;
 		int numberOfBall = 0;
 		numberOfBall = countCharacterInSameIndex(user.getGuess(), computer.getRandomNumbers());
@@ -33,6 +40,12 @@ public class GameService {
 		}
 	}
 
+	public void validate() throws Exception{
+		String pattern = "[0-9]{3}";
+		if(!user.getGuess().matches(pattern))
+			throw new IllegalArgumentException();
+	}
+
 	private int countCharacterInSameIndex(String input1, String input2) {
 		int count = 0;
 		for (int i = 0; i < input1.length(); i++) {
@@ -52,9 +65,5 @@ public class GameService {
 		return count;
 	}
 
-	private void validate(String input) throws Exception{
-		String pattern = "[0-9]{3}";
-		if(!input.matches(pattern))
-			throw new IllegalArgumentException();
-	}
+
 }
