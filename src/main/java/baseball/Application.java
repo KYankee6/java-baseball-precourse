@@ -3,11 +3,13 @@ package baseball;
 import static baseball.game.GameStatus.*;
 
 import baseball.game.Game;
+import baseball.game.GameService;
 
 public class Application {
 	public static void main(String[] args) {
 		Game game = new Game();
-		game.initialize();
+		GameService gameService = new GameService();
+		game.initialize(gameService);
 		while (true) {
 			if (game.getGameStatus() == INITIALIZE) {
 				//TODO computer generate random String
