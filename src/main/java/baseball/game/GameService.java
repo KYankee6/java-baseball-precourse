@@ -1,5 +1,7 @@
 package baseball.game;
 
+import java.io.IOException;
+
 import baseball.player.Computer;
 import baseball.player.User;
 
@@ -37,6 +39,14 @@ public class GameService {
 		if (numberOfStrike == 3){
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 			game.stop();
+		}
+	}
+
+	public void userTurn() {
+		try {
+			user.getUserInput();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
