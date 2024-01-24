@@ -4,6 +4,7 @@ import baseball.player.Computer;
 import baseball.player.User;
 
 public class GameService {
+
 	public void judge(Game game, User user, Computer computer) {
 		int numberOfStrike = 0;
 		int numberOfBall = 0;
@@ -49,5 +50,11 @@ public class GameService {
 				count++;
 		}
 		return count;
+	}
+
+	private void validate(String input) throws Exception{
+		String pattern = "[0-9]{3}";
+		if(!input.matches(pattern))
+			throw new IllegalArgumentException();
 	}
 }
