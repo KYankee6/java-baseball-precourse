@@ -42,11 +42,14 @@ public class GameService {
 		}
 	}
 
-	public void userTurn() {
+	public void userTurn() throws Exception {
 		try {
 			user.getUserInput();
+			validate();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (IllegalArgumentException e){
+			throw new IllegalArgumentException(e);
 		}
 	}
 

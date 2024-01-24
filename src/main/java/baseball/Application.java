@@ -19,12 +19,10 @@ public class Application {
 				//TODO computer generate random String
 			}
 
-			if (game.getGameStatus() == PLAYING) {
-				//TODO user guess random string and computer replies
-			}
-
-			if (game.getGameStatus() == STOP) {
-				//TODO print hurray and ask for the next game
+			try {
+				gameService.userTurn();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
 			}
 
 			if (game.getGameStatus() == EXIT) {
